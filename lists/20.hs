@@ -1,6 +1,6 @@
-removeAt :: Int -> [a] -> (a,[a])
+removeAt :: Int -> [a] -> (Maybe a,[a])
 removeAt k xs = removehelper (k-1) xs []
-  where removehelper _ [] _ = error ("No element at index " ++ show k)
+  where removehelper _ [] ys = (Nothing, ys)
         removehelper k (x:xs) ys
-          | k == 0    = (x,ys++xs)
+          | k == 0    = (Just x,ys++xs)
           | otherwise = removehelper (k-1) xs (ys++[x])
